@@ -1,0 +1,6 @@
+{
+  "name": "Islam For You",
+  "description": "An immersive, emotionally intelligent platform to explore Islam through curiosity and reflection.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
