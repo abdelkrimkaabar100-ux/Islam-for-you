@@ -59,7 +59,7 @@ export function AIGuide({ isDiscoveryMode }: { isDiscoveryMode?: boolean }) {
           >
             <Bird className="w-6 h-6 group-hover:animate-pulse" />
             <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 text-sm font-medium whitespace-nowrap px-0 group-hover:px-2">
-              Ask Nur
+              {t('guide.title')}
             </span>
           </motion.button>
         )}
@@ -79,8 +79,8 @@ export function AIGuide({ isDiscoveryMode }: { isDiscoveryMode?: boolean }) {
                    <Sun className="w-5 h-5 text-emerald-400 animate-pulse" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-lg leading-none">Nur</h3>
-                  <p className="text-[10px] uppercase tracking-widest text-emerald-400 opacity-60">The Whispering Light</p>
+                  <h3 className="font-serif font-bold text-lg leading-none">{t('guide.title')}</h3>
+                  <p className="text-[10px] uppercase tracking-widest text-emerald-400 opacity-60">{t('guide.subtitle')}</p>
                 </div>
               </div>
               <button 
@@ -96,7 +96,7 @@ export function AIGuide({ isDiscoveryMode }: { isDiscoveryMode?: boolean }) {
                 <div className="py-8 text-center space-y-4">
                   <Bird className="w-12 h-12 text-white/5 mx-auto" />
                   <p className="text-zinc-500 text-sm italic font-serif max-w-[200px] mx-auto">
-                    "I am Nur. Your questions are the sparks that light the path. Speak your heart."
+                    {t('guide.intro')}
                   </p>
                 </div>
               )}
@@ -115,7 +115,7 @@ export function AIGuide({ isDiscoveryMode }: { isDiscoveryMode?: boolean }) {
                 <div className="flex justify-start">
                   <div className="bg-white/5 p-4 rounded-3xl rounded-tl-none flex items-center gap-3">
                     <Loader2 className="w-4 h-4 animate-spin text-emerald-400" />
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-emerald-400/60 font-bold">Reflecting...</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-emerald-400/60 font-bold">{t('guide.reflecting')}</span>
                   </div>
                 </div>
               )}
@@ -128,7 +128,7 @@ export function AIGuide({ isDiscoveryMode }: { isDiscoveryMode?: boolean }) {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask the light..."
+                  placeholder={t('guide.input')}
                   className="w-full pl-6 pr-16 py-5 bg-white/5 border border-white/5 rounded-2xl focus:border-emerald-400/30 outline-none text-white text-sm transition-all placeholder:text-zinc-600"
                 />
                 <button

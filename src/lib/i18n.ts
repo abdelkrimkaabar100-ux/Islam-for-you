@@ -29,8 +29,17 @@ i18n
             title: 'Unveil the Truth Within',
             subtitle: 'You are not a drop in the ocean. You are the entire ocean in a drop. Explore the environment that birthed the final light.',
             cta: 'Enter the Exhibition',
+            scroll: 'Descend into reflection',
           },
           journey: {
+            chapter: 'Chapter',
+            reflect: 'Reflect',
+            insight: 'Dive into Insight',
+            proceed: 'Proceed with Insight',
+            understand: 'I understand',
+            sharePrompt: 'Share your reflection with Nur',
+            placeholder: 'What stirs in your heart?',
+            inquiry: 'Deep Inquiry',
             scenes: {
               chaos: 'The Age of Shadows',
               mercy: 'Refining the Soul',
@@ -48,11 +57,18 @@ i18n
             questions: {
               chaos: 'If there is no higher law, what stops the powerful from crushing the weak?',
               mercy: 'Can a message be true if the messenger is not also beautiful?',
-              revelation: 'Why did a man who had everything—a loving wife, a respected status—flee to a cave in search of something more?',
+              revelation: 'Why did a man who had everything flee to a cave in search of something more?',
               liberation: 'Are you truly free if you are a slave to your own desires or the opinions of others?',
               destiny: 'If today was your last sunset, what would be the signature of your soul?',
             }
           },
+          guide: {
+            title: 'Nur',
+            subtitle: 'The Whispering Light',
+            intro: '"I am Nur. Your questions are the sparks that light the path. Speak your heart."',
+            input: 'Ask the light...',
+            reflecting: 'Reflecting...',
+          }
         },
       },
       ar: {
@@ -67,8 +83,17 @@ i18n
             title: 'اكتشف جوهر الحقيقة',
             subtitle: 'لست مجرد قطرة في المحيط، بل أنت المحيط كله في قطرة. رحلة تأملية في البيئة التي شهدت ميلاد النور الخاتم.',
             cta: 'بدء التجربة',
+            scroll: 'انطلق في رحلة التأمل',
           },
           journey: {
+            chapter: 'الفصل',
+            reflect: 'تأمل',
+            insight: 'تعمق في البصيرة',
+            proceed: 'تابع بالبصيرة',
+            understand: 'فهمت الرسالة',
+            sharePrompt: 'شارك تأملاتك مع "نور"',
+            placeholder: 'ما الذي يختلج في صدرك؟',
+            inquiry: 'تساؤل عميق',
             scenes: {
               chaos: 'عصر الظلال (الجاهلية)',
               mercy: 'تهذيب النفس (الأمين)',
@@ -91,6 +116,13 @@ i18n
               destiny: 'لو كان هذا غروبك الأخير، فما هو الأثر الذي ستتركه روحك في سجلات الوجود؟',
             }
           },
+          guide: {
+            title: 'نور',
+            subtitle: 'همسات الضياء',
+            intro: '"أنا نور.. تساؤلاتك هي الشرر الذي يضيء الطريق. تكلم بما يمليه عليك قلبك."',
+            input: 'اسأل النور...',
+            reflecting: 'تأمل...',
+          }
         },
       },
       es: {
@@ -105,8 +137,17 @@ i18n
             title: 'Descubre la Verdad Interior',
             subtitle: 'No eres una gota en el océano; eres el océano entero en una gota. Explora el entorno que vio nacer la luz final.',
             cta: 'Entrar a la Exhibición',
+            scroll: 'Desciende a la reflexión',
           },
           journey: {
+            chapter: 'Capítulo',
+            reflect: 'Reflexiona',
+            insight: 'Sumergir en el Conocimiento',
+            proceed: 'Proceder con Sabiduría',
+            understand: 'Comprendo',
+            sharePrompt: 'Comparte tu reflexión con Nur',
+            placeholder: '¿Qué agita tu corazón?',
+            inquiry: 'Indagación Profunda',
             scenes: {
               chaos: 'La Era de las Sombras',
               mercy: 'Refinando el Alma',
@@ -129,6 +170,13 @@ i18n
               destiny: 'Si hoy fuera tu último atardecer, ¿cuál sería la firma de tu alma en este mundo?',
             }
           },
+          guide: {
+            title: 'Nur',
+            subtitle: 'La Luz Susurrante',
+            intro: '"Soy Nur. Tus preguntas son las chispas que iluminan el camino. Habla desde tu corazón."',
+            input: 'Pregunta a la luz...',
+            reflecting: 'Reflexionando...',
+          }
         },
       },
     },
