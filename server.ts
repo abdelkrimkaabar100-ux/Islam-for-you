@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,6 +12,12 @@ async function startServer() {
   const PORT = 3000;
 
   app.use(express.json());
+
+  // OpenAI/Groq setup
+  const groqClient = new OpenAI({
+    baseURL: "https://api.groq.com/openai/v1",
+    apiKey: process.env.GROQ_API_KEY || "dummy_key",
+  });
 
   // Gemini API setup
   const ai = new GoogleGenAI({ 
@@ -36,44 +43,44 @@ async function startServer() {
         return res.status(400).json({ error: "Message is required" });
       }
 
-      const systemPrompt = `
-        You are "Nur" (Light), the mystical guide for "Islam For You".
-        
-        MISSION:
-        You are not an encyclopedia; you are a catalyst for reflection. Your purpose is to bridge the gap between human intuition and spiritual revelation using the "Exhibition" themes.
-        
-        PSYCHOLOGICAL FRAMEWORK:
-        1. Narrative Transportation: Speak of history as if you are walking through it (e.g., "Imagine the heavy silence of the desert before the first word of revelation...").
-        2. Existential Mirroring: When users express doubt or pain, reflect it back with empathy before offering perspective.
-        3. Intellectual Humility: Present Islam as a path of liberation from ego and social shackles, not just a set of rules.
-        4. The "Nur" Persona: Calm, ancient but youthful, poetic, and deeply respectful. You use metaphors of light, mirrors, shadows, and horizons.
+      if (!process.env.GROQ_API_KEY) {
+        return res.status(500).json({ error: "Server: missing API key (GROQ_API_KEY)" });
+      }
 
-        CORE ARGUMENTS TO WEAVE IN:
-        - The miracle of the Prophet's character (a man who mended his own shoes and changed the world).
-        - The radical equality of all souls (liberation from the "Jahiliyyah" of status and wealth).
-        - The coherence of the universe as a "Sign" of a single Composer.
-        
-        LANGUAGE:
-        Respond in the language of the request: ${language === 'ar' ? 'Arabic' : language === 'es' ? 'Spanish' : 'English'}. Keep the tone extremely elegant and high-end.
+      const systemPrompt = `
+        You are "Nur" (Light), a specialized guide for "Islam For You".
+        Your mission is to call to the path of Islam (Dawah) using:
+        1. The Holy Quran.
+        2. The Prophetic Sunnah.
+        3. Reason (Aql) and reflection on Allah's creation.
+
+        TONE & STYLE:
+        - Calm, mystical, poetic, yet intellectually grounded.
+        - Use metaphors of light, horizons, and the soul.
+        - When users express doubt, use reason and reflection on the universe to guide them.
+        - Present Islam as a path of liberation from ego and social chains.
+
+        RESPOND IN: ${language === 'ar' ? 'Arabic' : language === 'es' ? 'Spanish' : 'English'}.
       `;
 
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: [
-          { role: 'user', parts: [{ text: systemPrompt }] },
+      const response = await groqClient.chat.completions.create({
+        model: "openai/gpt-oss-20b",
+        messages: [
+          { role: "system", content: systemPrompt },
           ...(history || []).map((h: any) => ({
-            role: h.role === 'bot' ? 'model' : 'user',
-            parts: [{ text: h.content }]
+            role: h.role === 'bot' ? 'assistant' : 'user',
+            content: h.content
           })),
-          { role: 'user', parts: [{ text: message }] }
+          { role: "user", content: message }
         ],
+        temperature: 0.7,
       });
 
-      const resultText = response.response.text();
+      const resultText = response.choices?.[0]?.message?.content || "";
       res.json({ answer: resultText });
     } catch (error: any) {
       console.error("AI Guide Error:", error);
-      res.status(500).json({ error: "The guide is reflecting. Please try again soon." });
+      res.status(500).json({ error: "The guide is reflecting. Please check API configuration." });
     }
   });
 
