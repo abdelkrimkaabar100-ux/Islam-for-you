@@ -40,7 +40,7 @@ export function AIGuide({ isDiscoveryMode }: { isDiscoveryMode?: boolean }) {
       const data = await response.json();
       setMessages((prev) => [...prev, { role: 'bot', content: data.answer }]);
     } catch (error) {
-      setMessages((prev) => [...prev, { role: 'bot', content: 'I am taking a moment to reflect. Please try again soon.' }]);
+      setMessages((prev) => [...prev, { role: 'bot', content: 'The light is momentarily veiled. Please check your connection or wait for the dawn.' }]);
     } finally {
       setIsLoading(false);
     }

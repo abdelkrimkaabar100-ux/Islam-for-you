@@ -30,57 +30,61 @@ export function Scene({ activeStep }: { activeStep: number }) {
     // Smooth transition for rotation and scale
     const time = state.clock.getElapsedTime();
     
-    group.current.rotation.y += 0.001;
-    group.current.position.y = Math.sin(time * 0.5) * 0.2;
+    // Complex rotation
+    group.current.rotation.y += 0.002;
+    group.current.rotation.z = Math.sin(time * 0.2) * 0.1;
+    group.current.position.y = Math.sin(time * 0.5) * 0.3;
     
-    coreRef.current.rotation.x = time * 0.2;
-    coreRef.current.rotation.z = time * 0.1;
+    // Core interaction
+    coreRef.current.rotation.x = time * 0.4;
+    coreRef.current.rotation.z = time * 0.3;
     
-    // Pulsing core
-    const scale = 1 + Math.sin(time * 2) * 0.05;
+    // Pulsing core with larger variance
+    const scale = 1.2 + Math.sin(time * 1.5) * 0.15;
     coreRef.current.scale.set(scale, scale, scale);
   });
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={2} color={activeColor} />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={3} color={activeColor} />
+      <pointLight position={[-10, -10, -10]} intensity={1} color="#ffffff" />
       
       <group ref={group}>
         {/* Deep Space Particles */}
-        <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
+        <Stars radius={100} depth={50} count={7000} factor={6} saturation={0} fade speed={1.5} />
         
-        {/* Active Step "Nur" Particles */}
+        {/* Active Step "Nur" Particles - Higher Density */}
         <Sparkles 
-          count={200} 
-          scale={20} 
-          size={1.5} 
-          speed={0.3} 
-          opacity={0.5} 
+          count={400} 
+          scale={30} 
+          size={2} 
+          speed={0.5} 
+          opacity={0.6} 
           color={activeColor} 
         />
 
         {/* The Central Geometry "The Anchor" */}
-        <DreiFloat speed={2} rotationIntensity={1} floatIntensity={1}>
+        <DreiFloat speed={3} rotationIntensity={1.5} floatIntensity={1.5}>
           <mesh ref={coreRef}>
-            <octahedronGeometry args={[2, 0]} />
+            <octahedronGeometry args={[2.5, 0]} />
             <meshStandardMaterial 
               color={activeColor} 
               wireframe 
               transparent 
-              opacity={0.2} 
+              opacity={0.3} 
               emissive={activeColor}
-              emissiveIntensity={1}
+              emissiveIntensity={2}
             />
           </mesh>
           
-          <mesh scale={[1.1, 1.1, 1.1]}>
-             <octahedronGeometry args={[2.1, 0]} />
+          <mesh scale={[1.2, 1.2, 1.2]}>
+             <octahedronGeometry args={[2.6, 0]} />
              <meshBasicMaterial 
                 color={activeColor} 
                 wireframe 
                 transparent 
-                opacity={0.05} 
+                opacity={0.1} 
              />
           </mesh>
         </DreiFloat>
